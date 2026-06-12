@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rota da Nossa História</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="grain"></div>
+  <div class="ambient-light"></div>
+
+  <main class="app">
+    <section class="cover" id="cover">
+      <div class="cover-romance" aria-hidden="true">
+        <span>❤</span><span>❤</span><span>❤</span><span>❤</span><span>❤</span><span>❤</span>
+      </div>
+      <div class="cover-card">
+        <div class="cover-glow"></div>
+        <div class="love-stamp">06/02/2026 → 11/08/2026</div>
+        <div class="key-icon">💛</div>
+        <p class="tag">Uma surpresa feita com a nossa cara</p>
+        <h1>Uma rota feita de amor, lembranças e capítulos lindos</h1>
+        <p class="cover-text">
+          Tudo começou em 06/02/2026, com o nosso pedido de namoro. Depois vieram os restaurantes,
+          a viagem, os momentos simples, os shows e agora um novo capítulo: Buenos Aires.
+          Entra no carro e deixa esse mapa te guiar por cada lembrança.
+        </p>
+
+        <div class="start-panel">
+          <div>
+            <span>Início</span>
+            <strong>06/02/2026</strong>
+          </div>
+          <div>
+            <span>Rota</span>
+            <strong>7 paradas</strong>
+          </div>
+          <div>
+            <span>Último trecho</span>
+            <strong>Voo para Buenos Aires</strong>
+          </div>
+        </div>
+
+        <button id="startBtn">Começar nossa rota</button>
+        <span class="hint">Use fone de ouvido para viver melhor essa surpresa ✨</span>
+      </div>
+    </section>
+
+    <section class="map-screen hidden" id="mapScreen">
+      <header class="cockpit">
+        <div class="cockpit-left">
+          <p class="tag">Painel da rota</p>
+          <h2>Da nossa história até Buenos Aires</h2>
+          <span>O mapa libera uma lembrança por vez — e no último trecho o Etios dá lugar ao avião.</span>
+        </div>
+
+        <div class="dashboard">
+          <div class="dash-item">
+            <span>Destino atual</span>
+            <strong id="dashCurrent">Pedido de namoro</strong>
+          </div>
+          <div class="dash-item">
+            <span>Próxima parada</span>
+            <strong id="dashNext">Hannover Moema</strong>
+          </div>
+          <div class="dash-item">
+            <span>Status</span>
+            <strong id="dashStatus">Pronto para revelar</strong>
+          </div>
+        </div>
+      </header>
+
+      <section class="map-card">
+        <div class="map-paper" id="mapPaper">
+          <div class="map-texture"></div>
+          <div class="fold f1"></div>
+          <div class="fold f2"></div>
+          <div class="fold f3"></div>
+
+          <div class="compass">
+            <span>N</span>
+            <div class="needle"></div>
+          </div>
+
+          <div class="route-progress">
+            <div class="progress-top">
+              <span id="progressLabel">Parada 1 de 7</span>
+              <strong id="percentLabel">14%</strong>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" id="progressFill"></div>
+            </div>
+          </div>
+
+          <div class="map-title">
+            <strong id="currentStopName">Pedido de namoro</strong>
+            <span id="mapInstruction">O Etios está pronto para abrir a primeira lembrança.</span>
+          </div>
+
+          <div class="map-guide" id="mapGuide">
+            <p id="guideEyebrow">Parada atual</p>
+            <h3 id="guideTitle">Pedido de namoro</h3>
+            <p id="guideText">Clique no botão abaixo ou toque no pin brilhando.</p>
+            <button id="mapActionBtn">Revelar lembrança</button>
+          </div>
+
+          <div class="route-message hidden" id="routeMessage">
+            <span id="routeMessageSmall">Etios em movimento</span>
+            <strong id="routeMessageText">Indo para a próxima parada...</strong>
+          </div>
+
+          <div class="locked-toast hidden" id="lockedToast">Calma... siga a rota direitinho 💛</div>
+          <div class="arrival-toast hidden" id="arrivalToast">Chegamos à próxima parada</div>
+
+          <svg class="map-svg" viewBox="0 0 1200 760" preserveAspectRatio="none" aria-hidden="true">
+            <path class="river" d="M-20 520 C180 455 245 595 420 520 C610 438 645 292 830 352 C1010 410 1030 255 1220 300" />
+            <path class="road-small r1" d="M40 270 C210 240 275 305 420 250 C570 195 655 230 760 165" />
+            <path class="road-small r2" d="M550 710 C655 625 780 645 910 570 C1010 515 1070 540 1190 480" />
+
+            <path class="mountain m1" d="M88 220 L150 116 L220 220 Z" />
+            <path class="mountain m2" d="M160 226 L235 102 L322 226 Z" />
+            <path class="mountain m3" d="M720 670 L780 575 L850 670 Z" />
+            <path class="lake" d="M920 100 C1010 70 1090 120 1080 200 C1065 285 940 285 900 225 C865 170 865 125 920 100 Z" />
+
+            <path class="route-shadow" d="M145 615 C225 555 250 470 330 430 C430 380 500 490 600 455 C705 420 660 285 780 240 C900 194 930 345 1008 316 C1078 290 1085 210 1025 142" />
+            <path class="route-base" id="routePath" d="M145 615 C225 555 250 470 330 430 C430 380 500 490 600 455 C705 420 660 285 780 240 C900 194 930 345 1008 316 C1078 290 1085 210 1025 142" />
+            <path class="route-glow" id="routeDone" d="M145 615 C225 555 250 470 330 430 C430 380 500 490 600 455 C705 420 660 285 780 240 C900 194 930 345 1008 316 C1078 290 1085 210 1025 142" />
+          </svg>
+
+          <div class="car-marker" id="carMarker" aria-hidden="true">
+            <div class="headlight-beam beam-left"></div>
+            <div class="headlight-beam beam-right"></div>
+            <div class="car-shadow"></div>
+            <svg class="car-svg" viewBox="0 0 170 86">
+              <rect x="28" y="34" rx="12" ry="12" width="110" height="28" class="car-body" />
+              <path d="M48 34 L66 17 H106 L126 34 Z" class="car-roof"/>
+              <rect x="68" y="21" width="25" height="12" rx="3" class="car-window"/>
+              <rect x="96" y="21" width="17" height="12" rx="3" class="car-window"/>
+              <rect x="31" y="42" width="12" height="7" rx="2" class="light-front"/>
+              <rect x="127" y="42" width="9" height="7" rx="2" class="light-back"/>
+              <circle cx="52" cy="66" r="11" class="wheel"/>
+              <circle cx="115" cy="66" r="11" class="wheel"/>
+              <circle cx="52" cy="66" r="4" class="hub"/>
+              <circle cx="115" cy="66" r="4" class="hub"/>
+              <rect x="70" y="50" width="28" height="9" rx="2" class="plate"/>
+              <text x="84" y="57" text-anchor="middle" class="plate-text">AMR-26</text>
+            </svg>
+            <svg class="plane-svg" viewBox="0 0 240 140">
+              <g class="plane-contrail">
+                <path d="M8 82 C34 70 52 68 72 72" class="trail-line"/>
+                <path d="M0 96 C24 88 46 86 64 90" class="trail-line trail-soft"/>
+              </g>
+              <path class="plane-body" d="M38 77 C38 61 54 52 82 52 H116 L172 22 C180 18 191 20 197 27 L205 35 C210 40 210 48 205 53 L177 69 L220 75 C233 77 242 87 242 99 V106 L172 97 L133 131 C125 138 112 136 105 128 L98 120 C93 115 93 107 99 101 L119 87 H82 C54 87 38 83 38 77 Z"/>
+              <path class="plane-belly" d="M77 86 H128 L171 97"/>
+              <circle cx="87" cy="66" r="6" class="plane-window"/>
+              <circle cx="105" cy="66" r="6" class="plane-window"/>
+              <circle cx="123" cy="66" r="6" class="plane-window"/>
+              <circle cx="141" cy="66" r="6" class="plane-window"/>
+              <path class="plane-wing" d="M116 52 L145 6 L161 8 L147 52 Z"/>
+              <path class="plane-tail" d="M173 50 L212 2 L225 6 L196 53 Z"/>
+              <circle cx="186" cy="38" r="11" class="plane-badge"/>
+              <text x="186" y="42" text-anchor="middle" class="plane-badge-text">GOL</text>
+            </svg>
+            <div class="plane-trail" aria-hidden="true"><span></span><span></span><span></span></div>
+            <span class="car-label" id="travelLabel">Etios 2019</span>
+          </div>
+
+          <button class="pin pin1 active" data-index="0"><span class="pin-icon"></span><span class="pin-label">Nosso sim</span></button>
+          <button class="pin pin2 locked" data-index="1"><span class="pin-icon"></span><span class="pin-label">Brinde</span></button>
+          <button class="pin pin3 locked" data-index="2"><span class="pin-icon"></span><span class="pin-label">Sabores</span></button>
+          <button class="pin pin4 locked" data-index="3"><span class="pin-icon"></span><span class="pin-label">Serra</span></button>
+          <button class="pin pin5 locked" data-index="4"><span class="pin-icon"></span><span class="pin-label">Abrigo</span></button>
+          <button class="pin pin6 locked" data-index="5"><span class="pin-icon"></span><span class="pin-label">Ritmo</span></button>
+          <button class="pin pin7 locked final-pin plane-pin" data-index="6"><span class="pin-icon"></span><span class="pin-label">Nosso voo</span></button>
+
+          <div class="visited-stamps" id="visitedStamps"></div>
+
+          <button class="help-btn" id="helpBtn">?</button>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <div class="help-modal hidden" id="helpModal">
+    <div class="help-card">
+      <button id="closeHelp">×</button>
+      <h3>Como seguir a rota</h3>
+      <p>O mapa guia tudo. O Etios anda até cada parada e libera uma lembrança por vez.</p>
+      <p>No último trecho, a viagem muda de escala: o carro dá lugar ao voo para Buenos Aires.</p>
+      <p>Depois de ver a lembrança, clique em “Voltar para o mapa” para seguir a viagem.</p>
+    </div>
+  </div>
+
+  <div class="memory-modal" id="memoryModal" role="dialog" aria-modal="true">
+    <div class="memory-card">
+      <button class="close" id="closeBtn" aria-label="Fechar">×</button>
+      <div class="postcard-tag" id="postcardTag">Postal da parada</div>
+
+      <div class="memory-gallery">
+        <button class="gallery-arrow gallery-prev" id="galleryPrev" aria-label="Foto anterior">‹</button>
+        <div class="memory-photo">
+          <img id="memoryPhoto" src="" alt="Foto da lembrança">
+          <span class="photo-counter" id="photoCounter">1/1</span>
+        </div>
+        <button class="gallery-arrow gallery-next" id="galleryNext" aria-label="Próxima foto">›</button>
+      </div>
+      <div class="photo-thumbs" id="photoThumbs"></div>
+
+      <div class="audio-card">
+        <div>
+          <span>Trilha da parada</span>
+          <strong id="songName">Nossa música</strong>
+        </div>
+        <button id="musicBtn">Tocar</button>
+      </div>
+
+      <audio id="audioPlayer" preload="metadata"></audio>
+
+      <p class="memory-step" id="memoryStep">Parada 1</p>
+      <h2 id="memoryTitle">Lembra desse momento?</h2>
+      <p id="memoryText"></p>
+
+      <div class="question-box">
+        <p id="memoryQuestion"></p>
+      </div>
+
+      <div class="memory-actions">
+        <button class="primary wide" id="returnToMapBtn">Voltar para o mapa</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="final-screen hidden" id="finalScreen">
+    <div class="final-card">
+      <p class="tag">Destino final</p>
+      <h2>Nossa rota chegou ao seu capítulo mais especial</h2>
+      <p>
+        Começou com um pedido de namoro e terminou com um voo rumo a Buenos Aires.
+        Cada parada desse caminho mostrou como a nossa história ficou ainda mais bonita em pouco tempo.
+      </p>
+
+      <div class="final-summary">
+        <div><strong>7</strong><span>paradas</span></div>
+        <div><strong>21</strong><span>fotos</span></div>
+        <div><strong>1</strong><span>história em construção</span></div>
+      </div>
+
+      <button id="openLetterBtn">Abrir carta final</button>
+
+      <div class="letter hidden" id="letter">
+        <h3>Minha carta final</h3>
+        <p>
+          Eu quis transformar nossos momentos em uma rota porque cada lembrança com você tem um peso especial.
+          Não são só datas ou lugares. São pedaços da nossa história, do jeito que ela foi acontecendo, com verdade,
+          carinho e vontade de viver mais coisas juntos.
+        </p>
+        <p>
+          O pedido de namoro foi o começo. Depois vieram os restaurantes, a viagem, os momentos tranquilos em casa,
+          os shows, os gostos que a gente compartilha e agora essa nova lembrança que já tem nome: Buenos Aires.
+        </p>
+        <p>
+          Se depender de mim, essa rota ainda vai ganhar muitos outros capítulos bonitos.
+        </p>
+        <strong>Com carinho,<br>Juan</strong>
+      </div>
+
+      <button class="restart" id="restartBtn">Rever o mapa</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

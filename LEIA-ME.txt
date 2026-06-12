@@ -1,0 +1,34 @@
+PROJETO DIA DOS NAMORADOS — VERSÃO FINAL COM 7 PARADAS
+
+Esta versão foi atualizada com:
+- 3 fotos diferentes em cada ponto;
+- comentários/textos românticos melhorados em cada lembrança;
+- 1 nova parada: viagem para Buenos Aires, Argentina;
+- último trajeto com ícone de avião (Voo GOL) no lugar do Etios;
+- visual das fotos melhorado no modal.
+
+ORDEM DOS PONTOS E FOTOS:
+1) 06/02/2026 — Pedido de namoro -> fotos/ponto1/
+2) 06/03/2026 — Restaurante Hannover Moema -> fotos/ponto2/
+3) 31/03/2026 — Restaurante japonês na Liberdade -> fotos/ponto3/
+4) 03/04/2026 — Viagem para Campos do Jordão -> fotos/ponto4/
+5) 12/04/2026 — Em casa / Palmeiras / malhar / comida japonesa -> fotos/ponto5/
+6) 31/05/2026 — Shows e eventos -> fotos/ponto6/
+7) 11/08/2026 — Viagem para Buenos Aires -> fotos/ponto7/
+
+COMO TROCAR AS FOTOS:
+Basta substituir os arquivos foto1.jpg, foto2.jpg e foto3.jpg dentro de cada pasta do ponto correspondente.
+
+MÚSICAS:
+Se quiser, você pode adicionar os arquivos musica1.mp3 até musica7.mp3 dentro da pasta /musicas.
+
+MELHORIAS PREMIUM APLICADAS:
+- nomes mais apaixonantes para as paradas;
+- transição suave entre as fotos;
+- avião final com visual mais bonito e destaque do voo.
+
+MELHORIAS DELUXE APLICADAS:
+- animação de abertura mais romântica com corações flutuando;
+- botão inicial com brilho suave;
+- efeito sonoro elegante (chime) ao iniciar e ao chegar em cada nova parada;
+- último voo com chime especial.
